@@ -1,0 +1,93 @@
+﻿@model OptionsPricing.Models.OptionsPricingModel
+@{
+    List<string> listOptionTypes = new List<string>() { "Call", "Put" };
+}
+
+<div class="jumbotron">
+    <h2>Options Pricing Calculator</h2>
+    @using (Html.BeginForm())
+    {
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model.OptionType)
+                </div>
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.OptionType, new SelectList(listOptionTypes), "Select an option type")
+                    @Html.ValidationMessageFor(model => model.OptionType, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model.StockPrice)
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StockPrice)
+                    @Html.ValidationMessageFor(model => model.StockPrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model.StrikePrice)
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StrikePrice)
+                    @Html.ValidationMessageFor(model => model.StrikePrice, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model.TimeToMaturity)
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.TimeToMaturity)
+                    @Html.ValidationMessageFor(model => model.TimeToMaturity, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model.StandardDeviationOfUnderlyingStock)
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.StandardDeviationOfUnderlyingStock)
+                    @Html.ValidationMessageFor(model => model.StandardDeviationOfUnderlyingStock, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="control-label col-md-2">
+                    @Html.LabelFor(model => model.Risk)
+                </div>
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Risk)
+                    @Html.ValidationMessageFor(model => model.Risk, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            @if (Model != null && Model.Result != null)
+            {
+                <div class="form-group">
+                    <div class="control-label col-md-2">
+                        @Html.LabelFor(model => model.Result)
+                    </div>
+                    <div class="col-md-10">
+                        <b>@Model.Result</b>
+
+                    </div>
+                </div>
+            }
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Calculate" class="btn btn-default" />
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
