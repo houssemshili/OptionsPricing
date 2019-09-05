@@ -142,8 +142,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Utils\OptionsPricingCalculation.cs" />
-    <Compile Include="Models\OptionsPricingModel.cs" />
+    <Compile Include="Utils\Enums.cs" />
+    <Compile Include="Utils\IOptionsPricingCalculator.cs" />
+    <Compile Include="Utils\OptionsPricingCalculator.cs" />
+    <Compile Include="Models\OptionsPricing.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -179,8 +181,6 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Home\About.cshtml" />
-    <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>

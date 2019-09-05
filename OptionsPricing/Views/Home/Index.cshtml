@@ -1,7 +1,4 @@
-﻿@model OptionsPricing.Models.OptionsPricingModel
-@{
-    List<string> listOptionTypes = new List<string>() { "Call", "Put" };
-}
+﻿@model OptionsPricing.Models.OptionsPricing
 
 <div class="jumbotron">
     <h2>Options Pricing Calculator</h2>
@@ -16,7 +13,7 @@
                     @Html.LabelFor(model => model.OptionType)
                 </div>
                 <div class="col-md-10">
-                    @Html.DropDownListFor(model => model.OptionType, new SelectList(listOptionTypes), "Select an option type")
+                    @Html.DropDownListFor(model => model.OptionType, EnumHelper.GetSelectList(typeof(OptionsPricing.Utils.OptionsType)), "Select an option type")
                     @Html.ValidationMessageFor(model => model.OptionType, "", new { @class = "text-danger" })
                 </div>
             </div>

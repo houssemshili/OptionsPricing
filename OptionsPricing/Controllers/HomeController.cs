@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Web;
+﻿using System.Globalization;
 using System.Web.Mvc;
-using OptionsPricing.Models;
 using OptionsPricing.Utils;
 
 namespace OptionsPricing.Controllers
@@ -19,9 +14,10 @@ namespace OptionsPricing.Controllers
         }
 
         [HttpPost]
-        public ActionResult Index([Bind(Include = "OptionType,StockPrice,StrikePrice,TimeToMaturity,StandardDeviationOfUnderlyingStock,Risk")] OptionsPricingModel optionsPricingModel)
+        public ActionResult Index([Bind(Include = "OptionType,StockPrice,StrikePrice,TimeToMaturity,StandardDeviationOfUnderlyingStock,Risk")] Models.OptionsPricing optionsPricingModel)
         {
-            optionsPricingModel.Result = Math.Round(OptionsPricingCalculation.OptionsPricing(optionsPricingModel),4);
+            IOptionsPricingCalculator optionsPricingCalculator = new OptionsPricingCalculator();
+            optionsPricingModel.Result = optionsPricingCalculator.OptionsPricing(optionsPricingModel);
             return View(optionsPricingModel);
         }
     }
